@@ -25,6 +25,7 @@ class UsersController < ApplicationController
   def authentication
     @user = User.where(email: params[:email]).take
     if @user && @user.authenticate(params[:password])
+      reset_session
       session[:user_id] = @user.id
       flash[:success] = "Login Successfully."
       redirect_to root_path
