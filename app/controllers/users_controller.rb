@@ -13,10 +13,11 @@ class UsersController < ApplicationController
     if @user.save
       reset_session
       session[:user_id] = @user.id
+      flash[:success] = "User Is Created"
       redirect_to root_path
     else
       render :new, status: :unprocessable_entity
-    end
+    end 
   end
 
   def login
@@ -42,6 +43,7 @@ class UsersController < ApplicationController
   end
 
   private
+
   def user_params
     params.require(:user).permit(:name, :email, :cvv_number, :credit_card_number, :password)
   end

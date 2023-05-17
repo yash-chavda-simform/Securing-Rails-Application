@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   private
+  
   def already_login
     if current_user
       redirect_to root_path, flash:{ info: "Already loggedin" }
