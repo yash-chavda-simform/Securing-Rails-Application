@@ -10,7 +10,9 @@ module Secureapp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
-
+    config.session_store :cookie_store, expire_after: 30.minutes
+    config.filter_parameters << :cvv_number << :credit_card_number
+    # config.filter_parameters += [:password, :credit_card_number]
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
